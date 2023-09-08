@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet status</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            color: white;
+            text-align: center;
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;        
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 50px;">Internet connection status</h1>
+    <p style="font-size: 26px;" id="connectionStatus"></p>
+    <script>
+        function checkConnection() {
+            fetch('https://www.google.com', { method: 'HEAD', mode: 'no-cors' })
+                .then(response => {
+                    document.getElementById('connectionStatus').textContent = 'You have an active internet connection';
+                    document.body.style.backgroundColor = "green";
+                })
+                .catch(error => {
+                    document.getElementById('connectionStatus').textContent = 'You are not connected with the internet';
+                    document.body.style.backgroundColor = "red";
+                });
+        }
+        setInterval(checkConnection, 500);
+    </script>
+</body>
+</html>
